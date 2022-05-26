@@ -1,0 +1,99 @@
+a {
+    text-decoration: none;
+    color: #241e20;
+}
+
+/* navbar */
+header {
+    margin: 2% 5%;
+}
+.nav-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-link {
+    color: #241e20;
+}
+.nav_bar {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+.nav-links {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+/* Main */
+.main {
+    margin: 5% 10%;
+}
+
+/* Shop */
+.main-info{
+    padding: 5%;
+    background-color: #beb9b9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.products {
+    margin: 2% 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.product-card {
+    width: 40%;
+    margin: 2% 5%;
+    background-color: #beb9b9;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.product-img {
+    margin: 5%;
+    width: 350px;
+    height: 300px;
+    border-radius: 5%;
+}
+.product-list {
+    list-style: none;
+}
+.product-buttons {
+    margin: 5%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Footer */
+.footer_nav {
+    margin: 0 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Login  */
+.login-main {
+    margin: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.login-inputs {
+    margin: 5% 0;
+    display: flex;
+    flex-direction: column;
+}
+.login-input {
+    margin: 4% 0;
+}

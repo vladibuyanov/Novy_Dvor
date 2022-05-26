@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main">
+    <h3>Objekty</h3>
+    {% for object in res %}
+    <div style="margin: 2% 0;">
+        <a href="/objects/{{ object.id }}">{{ object.name }}</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

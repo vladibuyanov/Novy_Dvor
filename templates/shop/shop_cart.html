@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main">
+    <h3>Kosik</h3>
+    <div>
+        {% if items_number > 0 %}
+            {% for item in cart %}
+                <div>{{ item.title }}: {{ item.price }} EUR</div>
+            {% endfor %}
+            <p>Celkom: total </p>
+            <a href="/cart/send"><button>Objednat'</button></a>
+        {% else %}
+            <h5>Kosik prazdny</h5>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

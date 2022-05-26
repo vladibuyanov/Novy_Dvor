@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-info">
+    <h3>V našej kaviarni si môžete zakúpiť rôzne produkty</h3>
+</div>
+
+<div class="products">
+    {% for item in res %}
+        <div class="product-card">
+            <img src="../static/img/shop/{{ item.src }}" class="product-img" alt="{{ item.src }}">
+            <div class="product-card-main">
+                <ul class="product-list">
+                    <li>
+                        <h5>{{ item.title }}</h5>
+                        <p>{{ item.about }}</p>
+                        Cena: {{ item.price }} EUR
+                    </li>
+                </ul>
+                <div class="product-buttons">
+                    <a href="/shop/{{ item.id }}"><button>Zistit' viac</button></a>
+                    <form method="post">
+                        <input type="hidden" name="id" value="{{ item.id }}">
+                        <button type="submit">Pridat' do kosika</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
