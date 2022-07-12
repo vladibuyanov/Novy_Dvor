@@ -7,16 +7,9 @@ from flask_migrate import Migrate
 from flask_admin import Admin, expose, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 
-# Configurations
-from config import *
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = secret_key
-app.config['SQLALCHEMY_DATABASE_URI'] = data_base_uri
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = track_modifications
-app.config['FLASK_ADMIN_SWATCH'] = swatch
-app.config['DEBUG'] = debug
-
+app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
@@ -144,8 +137,9 @@ def objects():
 
 @app.route('/objects/<int:object_id>')
 def object_page(object_id):
-    res = Objects.query.filter_by(id=object_id).first()
-    return render_template('object.html', res=res)
+    if object_id:
+        res = Objects.query.filter_by(id=object_id).first()
+        return render_template('object.html', res=res)
 
 
 @app.route('/login', methods=['GET', 'POST'])
