@@ -1,4 +1,10 @@
+# Py
 /.idea
 /venv
-/config.py
+
+# Database
 /migrations/
+/app/Novy_dvor.db
+
+# Configuration
+/app/config.py

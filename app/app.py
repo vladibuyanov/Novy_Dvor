@@ -48,7 +48,7 @@ class Items(db.Model):
     isActive = db.Column(db.Boolean, nullable=True)
 
     def __repr__(self):
-        return self.title
+        return f'{self.title}'
 
 
 class DashBoardView(AdminIndexView):
@@ -164,7 +164,3 @@ def admin_login():
 def logo():
     logout_user()
     return redirect(url_for('index'))
-
-
-if __name__ == '__main__':
-    app.run()
