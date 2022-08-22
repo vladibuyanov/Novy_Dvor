@@ -4,7 +4,7 @@
 
 # Database
 /migrations/
-/app/Novy_dvor.db
+/core/Novy_dvor.db
 
 # Configuration
-/app/config.py
+/core/config.py

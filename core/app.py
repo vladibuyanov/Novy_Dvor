@@ -1,17 +1,13 @@
 import random
 
-from flask import Flask, render_template, request, redirect, url_for, session
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
-from flask_migrate import Migrate
+from flask import render_template, request, redirect, url_for, session
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_admin import Admin, expose, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
 
+from core.flask_app import app
+from core.database import db, AdminUser, Objects, Items
 
-app = Flask(__name__)
-app.config.from_pyfile('config.py')
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 
 
@@ -20,39 +16,7 @@ def load_user(user_id):
     return AdminUser.query.get(user_id)
 
 
-class AdminUser(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=True)
-    password = db.Column(db.String(50), nullable=True)
-
-    def __repr__(self):
-        return self.name
-
-
-class Objects(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    txt = db.Column(db.Text)
-    src = db.Column(db.Text)
-
-    def __repr__(self):
-        return '<Name %r>' % self.name
-
-
-class Items(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False)
-    price = db.Column(db.String(5), nullable=False)
-    about = db.Column(db.Text, nullable=False)
-    src = db.Column(db.Text, nullable=False)
-    isActive = db.Column(db.Boolean, nullable=True)
-
-    def __repr__(self):
-        return f'{self.title}'
-
-
 class DashBoardView(AdminIndexView):
-
     def is_accessible(self):
         return current_user.is_authenticated
 
@@ -110,7 +74,7 @@ def item_page(item_id):
 def cart(user_cart_id):
     user_cart = list()
     total = 0
-    if session['id'] == user_cart_id: 
+    if session['id'] == user_cart_id:
         if 'cart' in session:
             for item in session['cart']:
                 user_cart.append(Items.query.filter_by(id=item).first())
