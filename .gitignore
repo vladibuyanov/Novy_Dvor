@@ -4,7 +4,4 @@
 
 # Database
 /migrations/
-/core/Novy_dvor.db
-
-# Configuration
-/core/config.py
+/flask_app/Novy_dvor.db
