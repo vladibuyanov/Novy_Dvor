@@ -1,0 +1,16 @@
+/* Login  */
+.login-main {
+    margin: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.login-inputs {
+    margin: 5% 0;
+    display: flex;
+    flex-direction: column;
+}
+.login-input {
+    margin: 4% 0;
+}

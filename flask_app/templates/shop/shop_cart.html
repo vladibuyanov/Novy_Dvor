@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="main">
-    <h3>Kosik</h3>
+<div id="cart">
+    <h1>Kosik</h1>
     <div>
-        {% if items_number > 0 %}
+        {% if cart %}
             {% for item in cart %}
-                <div>{{ item.title }}: {{ item.price }} EUR</div>
+                <div>
+                    <p>{{ item[0].title }} x {{ item[1] }}: {{ item[2] }} EUR </p>
+                </div>
             {% endfor %}
-            <p>Celkom: total </p>
-            <a href="/cart/send"><button>Objednat'</button></a>
+            <p>Celkom: {{ total }} EUR</p>
+            <a href="/cart/send"><button class="shop_button">Objednat'</button></a>
         {% else %}
             <h5>Kosik prazdny</h5>
         {% endif %}

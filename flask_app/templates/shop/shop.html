@@ -1,31 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="main-info">
-    <h3>V našej kaviarni si môžete zakúpiť rôzne produkty</h3>
-</div>
+<div id="shop">
+  <h1>Kaviaren</h1>
+  <p id="heading">
+    V našom obchode môžete objaviť rôzne produkty, ktoré sú jedinečné
+    a ručne vyrobené. Ponúkame vám najkvalitnejšie produkty v oblasti
+    umeleckého remesla, takže si môžete byť istí, že si vyberáte z toho
+    najlepšieho. Okrem nádherných umeleckých diel, ktoré zdobia vaše
+    domovy, nájdete u nás aj originálne šperky a doplnky, ktoré sú dokonalým
+    darčekom pre vašich blízkych. V našej kaviarni si môžete zakúpiť aj
+    širokú škálu kávových zŕn z celého sveta, čajov a ďalších lahôdok, ktoré
+    vás dostanú svojím exotickým chuťovým zážitkom. Pridajte sa k nám a
+    objavte svet výnimočných umení a pochutnávok!
+  </p>
 
-<div class="products">
+  <div class="products">
     {% for item in res %}
-        <div class="product-card">
-            <img src="../static/img/shop/{{ item.src }}" class="product-img" alt="{{ item.src }}">
-            <div class="product-card-main">
-                <ul class="product-list">
-                    <li>
-                        <h5>{{ item.title }}</h5>
-                        <p>{{ item.about }}</p>
-                        Cena: {{ item.price }} EUR
-                    </li>
-                </ul>
-                <div class="product-buttons">
-                    <a href="/shop/{{ item.id }}"><button>Zistit' viac</button></a>
-                    <form method="post">
-                        <input type="hidden" name="id" value="{{ item.id }}">
-                        <button type="submit">Pridat' do kosika</button>
-                    </form>
-                </div>
-            </div>
+    <div class="product-card">
+      <img src="../static/img/shop/{{ item.src }}" class="product-img" alt="{{ item.src }}">
+      <div class="product-card-main">
+        <ul class="product-list">
+          <li>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.about }}</p>
+            <p>Cena: {{ item.price }} EUR</p>
+          </li>
+        </ul>
+        <div class="product-buttons">
+          <a href="/shop/item/{{ item.id }}">
+            <button class="shop_button">Zistiť viac</button>
+          </a>
+          <form method="post">
+            <input type="hidden" name="id" value="{{ item.id }}">
+            <button type="submit" class="shop_button">Pridať do košíka</button>
+          </form>
         </div>
+      </div>
+    </div>
     {% endfor %}
+  </div>
 </div>
 {% endblock %}

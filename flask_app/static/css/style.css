@@ -1,99 +1,79 @@
-a {
-    text-decoration: none;
-    color: #241e20;
+body {
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
 }
 
-/* navbar */
+a {text-decoration: none;}
+#content {}
+
+
+/* Header */
 header {
-    margin: 2% 5%;
-}
-.nav-header {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3% 5%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.logo {width: 45%;}
+
+.logo img {
+    width: 40%;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.nav-link {
-    color: #241e20;
-}
-.nav_bar {
-    display: flex;
-    align-items: center;
-    list-style: none;
-}
-.nav-links {
-    width: 30%;
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    justify-content: space-around;
+
+.nav-links a {
+    color: #333;
+    margin: 0 10px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-/* Main */
-.main {
-    margin: 5% 10%;
+.nav-links a:hover {color: #f00;}
+
+/* Content */
+#content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Shop */
-.main-info{
-    padding: 5%;
-    background-color: #beb9b9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.products {
-    margin: 2% 5%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.product-card {
-    width: 40%;
-    margin: 2% 5%;
-    background-color: #beb9b9;
-    border-radius: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-.product-img {
-    margin: 5%;
-    width: 350px;
-    height: 300px;
-    border-radius: 5%;
-}
-.product-list {
-    list-style: none;
-}
-.product-buttons {
-    margin: 5%;
-    display: flex;
-    justify-content: space-evenly;
+#content > * {
+  flex: 1;
 }
 
 /* Footer */
-.footer_nav {
-    margin: 0 3%;
+footer {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-}
-
-/* Login  */
-.login-main {
-    margin: 20%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
+    padding: 3% 5%;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+    max-height: 150px;
 }
-.login-inputs {
-    margin: 5% 0;
+.contact-info {
+    width: 50%;
+    text-align: left;
+    font-size: 16px;
+    color: #333;
     display: flex;
     flex-direction: column;
 }
-.login-input {
-    margin: 4% 0;
+.contact-info p {margin: 0;}
+.social-links {
+    width: 50%;
+    text-align: right;
+}
+.social-links img {
+    width: 50px;
+    height: auto;
 }

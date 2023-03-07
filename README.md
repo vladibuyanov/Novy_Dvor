@@ -1,4 +1,4 @@
-# [Novy Dvor](https://novydvor.herokuapp.com/) 
+# [Novy Dvor]() 
 
 
 ## Tech

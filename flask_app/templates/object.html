@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 
-
 {% block content %}
-<div class="main">
-    <div style="display: flex; justify-content: center">
-        <img src="{{ res.src }}"
-         alt="{{ res.src }}" style="width: 50%;">
-    </div>
-    <div>
+<div id="object">
+    <div class="text-wrapper">
         <h3>{{ res.name }}</h3>
         <p>{{ res.txt }}</p>
     </div>
+    <img src="{{ res.src }}" alt="{{ res.src }}">
 </div>
 {% endblock %}

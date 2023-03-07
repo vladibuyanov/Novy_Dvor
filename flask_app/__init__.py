@@ -8,7 +8,10 @@ from flask_app.core.models.admin import AdminUser
 from flask_app.core.models.item import Items
 from flask_app.core.models.objects import Objects
 
-from flask_app.core.routes import main
+from flask_app.core.routes.main import main
+from flask_app.core.routes.auth import auth
+from flask_app.core.routes.area_objects import area_objects
+from flask_app.core.routes.shop import shop
 
 
 def create_app(config_file_path):
@@ -33,6 +36,9 @@ def create_app(config_file_path):
 
     # Routes
     app.register_blueprint(main)
+    app.register_blueprint(auth)
+    app.register_blueprint(area_objects)
+    app.register_blueprint(shop)
 
     return app
 

@@ -1,0 +1,11 @@
+<div class="logo">
+    <a href="/">
+        <img src="{{ url_for('static', filename='img/novy_dvor.jpg') }}" alt="Novy Dvor">
+    </a>
+</div>
+<nav class="nav-links">
+    <a href="/objects">Objekty</a>
+    <a href="/">Novy Dvor</a>
+    <a href="/shop">Kaviaren</a>
+    <a href="/cart/{{ session.id }}">Kosik</a>
+</nav>

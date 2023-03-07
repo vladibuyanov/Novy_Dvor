@@ -2,26 +2,23 @@
 
 
 {% block content %}
-    <div style="background-color: #beb9b9; padding: 2%">
-        <div class="main" style="display: flex; flex-direction: row; align-items: center">
-            <div>
-                <img src="../static/img/shop/{{ res.src }}"
-                     style="width: 90%; border-radius: 10%;"
-                     alt="{{ res.title }}">
-            </div>
-            <div class="product-card-main">
-                <ul class="product-list">
-                    <li>
-                        <h5>{{ res.title }}</h5>
-                        <p>{{ res.about }}</p>
-                        <p>Cena: {{ res.price }} EUR </p>
-                        <form method="post">
-                            <input type="hidden" name="id" value="{{ res.id }}">
-                            <button type="submit">Pridat' do kosika</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+<div class="product-card-main" id="shop-item">
+    <a href="/shop" id="back-href"><- Nasped'</a>
+    <div id="shop-item-content">
+        <img src="{{ url_for('static', filename='img/shop/' + res.src) }}" alt="{{ res.title }}">
+        <ul class="product-list">
+            <li>
+                <h1>{{ res.title }}</h1>
+                <p>{{ res.about }}</p>
+                <p>Cena: {{ res.price }} EUR </p>
+                <form method="post">
+                    <input type="hidden" name="id" value="{{ res.id }}">
+                    <button type="submit" class="shop_button">Pridat' do kosika</button>
+                </form>
+            </li>
+        </ul>
     </div>
+</div>
+
 {% endblock %}
