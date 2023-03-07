@@ -5,15 +5,25 @@
     <h1>Kosik</h1>
     <div>
         {% if cart %}
-            {% for item in cart %}
-                <div>
-                    <p>{{ item[0].title }} x {{ item[1] }}: {{ item[2] }} EUR </p>
-                </div>
-            {% endfor %}
+        {% for item in cart %}
+        <div style="width: 40%; display: flex; align-items: center; justify-content: space-between;">
+            <p>{{ item[0].title }} x {{ item[1] }}: {{ item[2] }} EUR </p>
+            <form action="/cart/remove" method="post">
+                <input type="hidden" name="product_id" value="{{ item[0].id }}">
+                <button type="submit" class="shop_button">Odstrániť</button>
+            </form>
+        </div>
+        {% endfor %}
+        <div style="
+            border-top: 0.5px solid gray; margin-top: 2%; padding-top: 2%;
+            width: 40%; display: flex; align-items: center; justify-content: space-between;
+        ">
             <p>Celkom: {{ total }} EUR</p>
             <a href="/cart/send"><button class="shop_button">Objednat'</button></a>
+        </div>
+
         {% else %}
-            <h5>Kosik prazdny</h5>
+        <h5>Kosik prazdny</h5>
         {% endif %}
     </div>
 </div>

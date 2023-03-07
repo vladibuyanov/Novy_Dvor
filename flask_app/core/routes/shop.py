@@ -41,15 +41,21 @@ def item_view(item_id):
 
 
 @shop.route('/cart/', defaults={'user_cart_id': None})
-@shop.route('/cart/<user_cart_id>')
+@shop.route('/cart/<user_cart_id>', methods=['GET', 'POST'])
 def cart_view(user_cart_id):
     template = f'{template_path}/shop_cart.html'
 
-    if user_cart_id is None:
-        return render_template(template)
+    if request.method == 'GET':
+        if user_cart_id is None:
+            return render_template(template)
+        else:
+            ordered_items_with_count, total_price = cart_func()
+            return render_template(template, cart=ordered_items_with_count, total=total_price)
     else:
-        ordered_items_with_count, total_price = cart_func()
-        return render_template(template, cart=ordered_items_with_count, total=total_price)
+        delete_items = request.form['product_id']
+        del session['card'][delete_items]
+        session.modified = True
+        return redirect(url_for(redirect_template))
 
 
 @shop.route('/cart/send', methods=['POST'])
