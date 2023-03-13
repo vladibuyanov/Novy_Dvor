@@ -1,11 +1,12 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_admin import Admin
+from flask_admin.menu import MenuLink
 
-from flask_app.core.admin import DashBoardView, MyModelView
+from flask_app.core.admin import DashBoardView, MyModelView, OrderItemsAdmin, OrderAdmin
 from flask_app.core.extensions import db, migrate
 from flask_app.core.models.admin import AdminUser
-from flask_app.core.models.item import Items
+from flask_app.core.models.item import Items, Order, OrderItems
 from flask_app.core.models.objects import Objects
 
 from flask_app.core.routes.main import main
@@ -33,6 +34,12 @@ def create_app(config_file_path):
     admin.add_view(MyModelView(AdminUser, db.session))
     admin.add_view(MyModelView(Objects, db.session))
     admin.add_view(MyModelView(Items, db.session))
+    admin.add_view(OrderAdmin(Order, db.session))
+    admin.add_view(OrderItemsAdmin(OrderItems, db.session))
+
+    # Menu buttons
+    admin.add_link(MenuLink(name='Back to web-page', url='/'))
+    admin.add_link(MenuLink(name='Log Out', url='/logout'))
 
     # Routes
     app.register_blueprint(main)

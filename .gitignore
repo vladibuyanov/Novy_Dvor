@@ -2,6 +2,3 @@
 /.idea
 /venv
 
-# Database
-/migrations/
-/flask_app/Novy_dvor.db

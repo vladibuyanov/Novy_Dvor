@@ -4,6 +4,8 @@ from flask_app import db
 
 
 class AdminUser(UserMixin, db.Model):
+    __tablename__ = 'Admin User'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=True)
     password = db.Column(db.String(50), nullable=True)

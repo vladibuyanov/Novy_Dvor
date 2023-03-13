@@ -4,12 +4,13 @@ from flask_login import current_user
 from flask import redirect, url_for
 
 
+
 class DashBoardView(AdminIndexView):
     def is_accessible(self):
         return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
 
     @expose('/')
     def admin_panel(self):
@@ -21,4 +22,12 @@ class MyModelView(ModelView):
         return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for('index'))
+        return redirect(url_for('main.index'))
+
+
+class OrderItemsAdmin(MyModelView):
+    column_list = ['id', 'quantity', 'item_id', 'order_id']
+
+
+class OrderAdmin(MyModelView):
+    column_list = ['id', 'customer_email']

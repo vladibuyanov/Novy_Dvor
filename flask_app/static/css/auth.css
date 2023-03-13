@@ -6,6 +6,12 @@
     justify-content: center;
     align-items: center;
 }
+.login-main form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+}
 .login-inputs {
     margin: 5% 0;
     display: flex;
