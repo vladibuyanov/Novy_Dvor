@@ -2,10 +2,18 @@
 
 {% block content %}
 <div id="objects">
-    <h1>Objekty</h1>
-    <div id="objects-content">
+    <div class="objects-div">
+        <h1>Objekty</h1>
+        <p>
+            V objektoch (č. 141, 242, 143, 144, 242) priebieha
+            odborná obnova. Sú tak viditeľné vývojové štádia od
+            ich vzniku asi v 16. storočí, cez ich rozširovanie
+            v neskorších obdobiach, až po vznik nadzemných budov v 18., 19. a 20. storočí.
+        </p>
+    </div>
+    <div id="objects-content" class="objects-div">
         {% for object in res %}
-       <div class="object-content"> <!-- style="background-image: url('{{ object.src }}');"-->
+        <div class="object-content"> <!-- style="background-image: url('{{ object.src }}');"-->
             <a href="/objects/{{ object.id }}">{{ object.name }}</a>
         </div>
         {% endfor %}

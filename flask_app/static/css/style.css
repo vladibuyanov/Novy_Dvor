@@ -12,14 +12,14 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3% 5%;
+    padding: 2% 5%;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .logo {width: 45%;}
 
 .logo img {
-    width: 40%;
+    width: 30%;
     height: auto;
 }
 

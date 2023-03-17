@@ -5,5 +5,5 @@ from wtforms.validators import DataRequired, Email
 
 class ContactForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"class": "form-control"})
-    message = TextAreaField('Message', validators=[DataRequired()], render_kw={"class": "form-control"})
+    message = TextAreaField('Message', validators=[DataRequired()], render_kw={"class": "form-control", "rows": 8})
     submit = SubmitField("Poslat'", render_kw={"class": "main-button"})
