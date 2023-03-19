@@ -12,7 +12,7 @@ redirect_template = 'shop.shop_view'
 @shop.route('/shop', methods=['GET', 'POST'])
 def shop_view():
     template = f'{template_path}/shop.html'
-    res = db.session.query(Items).all()
+    res = db.session.query(Items).filter(Items.amount != 0).all()
     shop_view_func(request)
     return render_template(template, res=res)
 

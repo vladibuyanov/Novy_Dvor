@@ -4,8 +4,14 @@ from flask import session
 from flask_app.core.extensions import db
 from flask_app.core.models.item import Items, Order, OrderItems
 
+"""
+    TODO:
+    1. User want buy more items than we have
+    2. Session id
+"""
 
-def shop_view_func(request):
+
+def shop_view_func(request) -> None:
     if request.method == 'GET':
         if 'card' not in session:
             session['id'] = random.randint(1, 10000)
@@ -15,7 +21,7 @@ def shop_view_func(request):
     session.modified = True
 
 
-def add_in_cart_func(product):
+def add_in_cart_func(product) -> None:
     if product not in session['card']:
         session['card'][product] = 1
     else:
@@ -23,15 +29,21 @@ def add_in_cart_func(product):
     session.modified = True
 
 
-def cart_func():
+def cart_remove_func(request) -> None:
+    delete_items = request.form['product_id']
+    del session['card'][delete_items]
+    session.modified = True
+
+
+def cart_func() -> tuple:
     ordered_items_dict = session.get('card', [])
     try:
         ordered_items = Items.query.filter(Items.id.in_(ordered_items_dict.keys())).all()
         ordered_items_with_count = [
             [
-                item,  # Модель товара
-                ordered_items_dict[str(item.id)],  # Количество
-                int(item.price) * ordered_items_dict[str(item.id)]  # Цена
+                item,  # Model of item
+                ordered_items_dict[str(item.id)],  # Amount
+                int(item.price) * ordered_items_dict[str(item.id)]  # Price
             ]
             for item in ordered_items
         ]
@@ -39,12 +51,6 @@ def cart_func():
         return ordered_items_with_count, total_price
     except AttributeError:
         return None, None
-
-
-def cart_remove_func(request):
-    delete_items = request.form['product_id']
-    del session['card'][delete_items]
-    session.modified = True
 
 
 def cart_new_order_func(ordered_items_with_count):
@@ -62,22 +68,23 @@ def cart_new_order_func(ordered_items_with_count):
 
 
 def finish_order_func(order_id, request):
+    # Add email to Order model
     order = Order.query.get(order_id)
     order.customer_email = request.form['email']
-
     db.session.commit()
 
+    # Preparing data for transfer to the payment service
     cart = cart_func()
     order_dict = {
         'email': order.customer_email,
         'total price': cart[1],
     }
-    try:
-        for order_items in cart[0]:
-            order_dict[order_items[0].title] = [order_items[1], order_items[2]]
-        session.clear()
-        session.new = True
-    except TypeError:
-        return None
-    finally:
-        return order_dict
+    for order_items in cart[0]:
+        order_dict[order_items[0].title] = [order_items[1], order_items[2]]
+        order_items[0].amount = order_items[0].amount - order_items[1]
+        db.session.commit()
+
+    session.clear()
+    session.new = True
+
+    return order_dict
