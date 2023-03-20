@@ -23,7 +23,8 @@ def item_view(item_id):
     if request.method == 'GET':
         return render_template(template, res=Items.query.get(item_id))
     else:
-        add_in_cart_func(request.form['id'])
+        quantity = request.form['quantity']
+        add_in_cart_func(str(item_id), quantity)
         return redirect(url_for(redirect_template))
 
 
@@ -32,7 +33,6 @@ def item_view(item_id):
 def cart_view(user_cart_id):
     template = f'{template_path}/shop_cart.html'
     ordered_items_with_count, total_price = cart_func()
-
     if request.method == 'GET':
         cart = ordered_items_with_count if user_cart_id else None
         total = total_price if user_cart_id else None

@@ -4,12 +4,6 @@ from flask import session
 from flask_app.core.extensions import db
 from flask_app.core.models.item import Items, Order, OrderItems
 
-"""
-    TODO:
-    1. User want buy more items than we have
-    2. Session id
-"""
-
 
 def shop_view_func(request) -> None:
     if request.method == 'GET':
@@ -21,11 +15,14 @@ def shop_view_func(request) -> None:
     session.modified = True
 
 
-def add_in_cart_func(product) -> None:
+def add_in_cart_func(product, quantity=1) -> None:
     if product not in session['card']:
         session['card'][product] = 1
     else:
-        session['card'][product] += 1
+        if quantity == 1:
+            session['card'][product] += 1
+        else:
+            session['card'][product] += int(quantity)
     session.modified = True
 
 

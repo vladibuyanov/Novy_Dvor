@@ -77,3 +77,14 @@ footer {
     width: 50px;
     height: auto;
 }
+
+/* Errors */
+#error-404 {
+    padding: 5%;
+    margin: auto;
+}
+#error-404 a {
+    font-size: 20px;
+    color: black;
+}
+#error-404 a button {padding: 2% 10%;}

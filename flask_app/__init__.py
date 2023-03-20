@@ -13,6 +13,7 @@ from flask_app.core.routes.main import main
 from flask_app.core.routes.auth import auth
 from flask_app.core.routes.area_objects import area_objects
 from flask_app.core.routes.shop import shop
+from flask_app.core.routes.extensions import extensions
 
 
 def create_app(config_file_path):
@@ -46,6 +47,9 @@ def create_app(config_file_path):
     app.register_blueprint(auth)
     app.register_blueprint(area_objects)
     app.register_blueprint(shop)
+
+    # Extensions
+    app.register_blueprint(extensions)
 
     return app
 

@@ -7,17 +7,18 @@
     <a href="/shop" id="back-href"><- Nasped'</a>
     <div id="shop-item-content">
         <img src="{{ url_for('static', filename='img/shop/' + res.src) }}" alt="{{ res.title }}">
-        <ul class="product-list">
-            <li>
-                <h1>{{ res.title }}</h1>
-                <p>{{ res.about }}</p>
-                <p>Cena: {{ res.price }} EUR </p>
-                <form method="post">
-                    <input type="hidden" name="id" value="{{ res.id }}">
-                    <button type="submit" class="shop_button">Pridat' do kosika</button>
-                </form>
-            </li>
-        </ul>
+        <div class="product-list">
+            <h1>{{ res.title }}</h1>
+            <p>{{ res.about }}</p>
+            <p>Cena: {{ res.price }} EUR </p>
+            <form method="post">
+                <div>
+                    <label for="quantity">Množstvo tovaru:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="{{ res.amount }}" value="1">
+                </div>
+                <button type="submit" class="shop_button">Pridat' do kosika</button>
+            </form>
+        </div>
     </div>
 </div>
 
